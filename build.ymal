@@ -1,0 +1,18 @@
+# build.yaml
+targets:
+  $default:
+    builders:
+      freezed|freezed:
+        enabled: false
+
+
+builders:
+  freezed:
+    import: "package:freezed/builder.dart"
+    builder_factories: ["freezed"]
+    build_extensions: { ".dart": [".freezed.dart"] }
+    auto_apply: dependents
+    build_to: source
+    runs_before:
+      - json_serializable|json_serializable
+      - source_gen|combining_builder
