@@ -74,6 +74,7 @@ dependencies:
   persistent_bottom_nav_bar: ^4.0.2
   flutter_rating_bar: ^4.0.0
   checkbox_grouped: ^1.6.1+1
+  webview_flutter: ^3.0.1
 
 
   # Using more icons. Ex: FontAweSome, Ant Design,...
@@ -147,6 +148,16 @@ flutter:
     - assets/images/girl3.jpg
     - assets/images/tin_tuc.svg
     - assets/images/flutter_card.png
+    - assets/images/Ribbons.png
+    - assets/images/trong_lua.png
+    - assets/images/xich_lo.png
+    - assets/images/lai_thuyen.png
+    - assets/images/not_search_found.png
+    - assets/images/xiaomi.png
+    - assets/images/second.png
+    - assets/images/lau.png
+    - assets/images/first.png
+    - assets/images/home.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

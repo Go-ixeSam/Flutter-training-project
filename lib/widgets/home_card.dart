@@ -7,62 +7,67 @@ class HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox(
-          width: 200,
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: double.infinity,
-                  child: Image.asset(
-                    Assets.homeCard,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade400)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Mùa quan tâm 1 người...",
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.schedule,
-                              size: 14,
-                              color: Color(
-                                VinColor.grey,
-                              ),
-                            ),
-                            SizedBox(width: 6),
-                            Text("14.10.2021 - 20.10.20.21",
-                                style: TextStyle(
-                                  color: Color(VinColor.grey),
-                                  fontSize: 12,
-                                ))
-                          ],
-                        )
-                      ],
+    return Padding(
+      padding: const EdgeInsets.only(right: 15),
+      child: Stack(
+        children: [
+          SizedBox(
+            width: 200,
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    child: Image.asset(
+                      Assets.homeCard,
+                      fit: BoxFit.fill,
                     ),
                   ),
-                )
-              ],
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10))
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Mùa quan tâm 1 người...",
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.schedule,
+                                size: 14,
+                                color: Color(
+                                  VinColor.grey,
+                                ),
+                              ),
+                              SizedBox(width: 6),
+                              Text("14.10.2021 - 20.10.20.21",
+                                  style: TextStyle(
+                                    color: Color(VinColor.grey),
+                                    fontSize: 12,
+                                  ))
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

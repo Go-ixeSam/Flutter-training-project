@@ -11,6 +11,7 @@ import 'package:online_croceries/data/network/login/login_api.dart';
 import 'package:online_croceries/data/network/rest_client.dart';
 import 'package:online_croceries/data/network/shop/shop_api.dart';
 import 'package:online_croceries/data/network/testing/pos_api.dart';
+import 'package:online_croceries/data/network/vincom/vincom_api.dart';
 import 'package:online_croceries/data/repository.dart';
 import 'package:online_croceries/data/sharedpref/shared_preference_helper.dart';
 import 'package:online_croceries/di/module/local_module.dart';
@@ -25,6 +26,7 @@ import 'package:online_croceries/stores/language/language_store.dart';
 import 'package:online_croceries/stores/shop/shop_store.dart';
 import 'package:online_croceries/stores/testing/pos_store.dart';
 import 'package:online_croceries/stores/user/user_store.dart';
+import 'package:online_croceries/stores/vincom/vincom_store.dart';
 import 'package:sembast/sembast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -59,6 +61,7 @@ Future<void> setupLocator() async {
   getIt.registerSingleton(CartApi(getIt<DioClient>(), getIt<RestClient>()));
   getIt.registerSingleton(FavoriteAPI(getIt<DioClient>(), getIt<RestClient>()));
   getIt.registerSingleton(PosAPI(getIt<DioClient>(), getIt<RestClient>()));
+  getIt.registerSingleton(VincomAPI(getIt<DioClient>(), getIt<RestClient>()));
 
   // data sources
   getIt.registerSingleton(CategoryDataSource(await getIt.getAsync<Database>()));
@@ -75,6 +78,7 @@ Future<void> setupLocator() async {
     getIt<CartApi>(),
     getIt<FavoriteAPI>(),
     getIt<PosAPI>(),
+    getIt<VincomAPI>()
   ));
 
   // stores:--------------------------------------------------------------------
@@ -86,4 +90,5 @@ Future<void> setupLocator() async {
   getIt.registerSingleton(FoodCategoryStore(getIt<Repository>()));
   getIt.registerSingleton(CartStore(getIt<Repository>()));
   getIt.registerSingleton(PosStore(getIt<Repository>()));
+  getIt.registerSingleton(VincomStore(getIt<Repository>()));
 }

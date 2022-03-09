@@ -8,6 +8,7 @@ import 'package:online_croceries/stores/form/form_store.dart';
 import 'package:online_croceries/stores/user/user_store.dart';
 import 'package:online_croceries/ui/signin/social_button.dart';
 import 'package:online_croceries/ui/vinhome/login_util_class/selectedButton.dart';
+import 'package:online_croceries/utils/routes/routes.dart';
 import 'package:online_croceries/widgets/green_button_widget.dart';
 import 'package:online_croceries/widgets/textfield_widget.dart';
 import 'package:online_croceries/widgets/transparent_status_bar.dart';
@@ -112,7 +113,8 @@ class _ViLoginState extends State<ViLogin> {
         onTap: () => FocusManager.instance.primaryFocus
             ?.unfocus(), //todo: remove focus on textField wwhen click outside
         child: Scaffold(
-          resizeToAvoidBottomInset: false,// todo: remove unbounded error when keyboard appear
+          resizeToAvoidBottomInset:
+              false, // todo: remove unbounded error when keyboard appear
           body: Padding(
             padding: EdgeInsets.only(left: typeButton!, right: typeButton!),
             child: Column(
@@ -130,7 +132,7 @@ class _ViLoginState extends State<ViLogin> {
                   height: 40,
                 ),
                 TypeLogin(
-                  changeButton: (buttonName)=>changeButton(buttonName),
+                  changeButton: (buttonName) => changeButton(buttonName),
                   selected: selected,
                 ),
                 SizedBox(
@@ -156,7 +158,9 @@ class _ViLoginState extends State<ViLogin> {
                 SizedBox(
                   height: 30,
                 ),
-                RedButton(() {}, "Đăng nhập"),
+                RedButton(() {
+                Navigator.of(context).pushNamedAndRemoveUntil(Routes.homeVi,(Route<dynamic> route)=>false);
+                }, "Đăng nhập"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

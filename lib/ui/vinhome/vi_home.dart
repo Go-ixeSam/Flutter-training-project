@@ -6,8 +6,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_croceries/constants/assets.dart';
 import 'package:online_croceries/constants/vin_color.dart';
 import 'package:online_croceries/ui/vinhome/big_cion.dart';
+import 'package:online_croceries/utils/routes/routes.dart';
 import 'package:online_croceries/widgets/button_tab.dart';
+import 'package:online_croceries/widgets/headline.dart';
 import 'package:online_croceries/widgets/home_card.dart';
+import 'package:online_croceries/widgets/home_card_style_2.dart';
+import 'package:online_croceries/widgets/succes_pop_up.dart';
 
 class ViHome extends StatefulWidget {
   const ViHome({Key? key}) : super(key: key);
@@ -22,80 +26,127 @@ class _ViHomeState extends State<ViHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Flexible(
-                flex: 1,
-                child: buildRedGround(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              // color: Colors.black,
+              height: 300,
+              // width: double.infinity,
+              child: Stack(
+                children: [
+                  buildRedGround(),
+                  Positioned(
+                      bottom: 10,
+                      left: 0,
+                      right: 0,
+                      child: buildCarosel()),
+                      // child: _buildImageSlider()),
+                ],
               ),
-              Flexible(flex: 2, child: ClipPath(child: Container())),
-              // Flexible(flex: 1, child: ),
-            ],
-          ),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 150,
-                ),
-                buildCarosel(),
-                SizedBox(
-                  height: 24,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 30, right: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [buildButtonTab("Tin tức", Assets.news)],
-                  ),
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                Container(
-                  height: 6,
-                  color: Colors.grey.shade300,
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(children: [
-                    Text("Ưu đãi nổi bật", style: TextStyle(fontSize: 16))
-                  ]),
-                ),
-                HomeCard()
-                // ButtonTab(
-                //   icon: SvgPicture.asset(
-                //     Assets.news,
-                //     color: Color(VinColor.red),
-                //   ),
-                // ),
-                // buildButtonTab("Tin tức", Assets.news)
-                // Flexible(
-                //   flex: 1,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [buildButtonTab("Tin tức", Assets.news)],
-                //   ),
-                // )
-              ],
             ),
-          )
-        ],
+            Column(
+              children: [
+            SizedBox(
+              height: 24,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  buildButtonTab("Tin tức", Assets.news),
+                  buildButtonTab("Ưu đãi", Assets.news),
+                  buildButtonTab("Xu hướng", Assets.news)
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            Container(
+              height: 6,
+              color: Colors.grey.shade300,
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(children: [
+                    Text("Ưu đãi nổi bật",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold))
+                  ]),
+                  Text(
+                    "Xem tất cả",
+                    style: TextStyle(color: Color(VinColor.red)),
+                  )
+                ],
+              ),
+            ),
+            // ViSuccessDialog()
+            buildFirstListView(),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Healine(text: "Xem tất cả",),
+            ),
+            buildSecondListView()
+              ],
+            )
+          ],
+        ),
       ),
+    );
+  }
+
+  buildFirstListView() {
+    return Container(
+      height: 200,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.only(left: 15, bottom: 15),
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return HomeCard();
+          }),
+    );
+  }
+
+  buildSecondListView() {
+    List<String> strArr = [Assets.lai_thuyen, Assets.lai_thuyen];
+    List<String> showArr = [
+      "Biểu tượng quốc gia",
+      "Tự hào địa phương",
+      "Điểm hẹn niềm vui"
+    ];
+    return Container(
+      height: 165,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.only(left: 15, bottom: 15),
+          itemCount: strArr.length,
+          itemBuilder: (context, index) {
+            return HomeCardStyleTwo(
+              text: showArr[index],
+              imageName: strArr[index],
+            );
+          }),
     );
   }
 
   buildButtonTab(String text, String iconName) {
     return Column(children: [
-      ButtonTab(
-        icon: SvgPicture.asset(
-          iconName,
-          color: Color(VinColor.red),
+      ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+        child: ButtonTab(
+          icon: SvgPicture.asset(
+            iconName,
+            color: Color(VinColor.red),
+          ),
         ),
       ),
       SizedBox(
@@ -125,8 +176,9 @@ class _ViHomeState extends State<ViHome> {
     return ClipPath(
       // clipper: RedClipper(),
       child: Container(
+        height: 200,
         decoration: BoxDecoration(
-            color: Color(VinColor.red),
+            color: Colors.red,
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.elliptical(300, 50),
                 bottomRight: Radius.elliptical(300, 50))),
@@ -184,16 +236,45 @@ class _ViHomeState extends State<ViHome> {
             children: [
               BigIcon(
                 iconName: Icons.search,
+                acttion: (){
+                  Navigator.of(context).pushNamed(Routes.homeSearch);
+                },
               ),
               SizedBox(
                 width: 16,
               ),
               BigIcon(
                 iconName: Icons.notifications_none,
+                acttion: (){},
               )
             ],
           )
         ],
+      ),
+    );
+  }
+
+  Widget _buildImageSlider() {
+    return Container(
+      width: double.infinity,
+      child: CarouselSlider.builder(
+        options: CarouselOptions(
+          autoPlay: true,
+          enlargeCenterPage: true,
+          enableInfiniteScroll: true,
+          autoPlayInterval: Duration(seconds: 3),
+        ),
+        itemCount: slide.length,
+        itemBuilder: (BuildContext context, int index, int realIndex) {
+          return Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Image.asset(
+              slide[index],
+              fit: BoxFit.fill,
+            ),
+          );
+        },
       ),
     );
   }
@@ -212,7 +293,8 @@ class _ViHomeState extends State<ViHome> {
             return ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 child: Container(
-                    width: 1500, child: Image.asset(i, fit: BoxFit.cover)));
+                    width: double.infinity,
+                    child: Image.asset(i, fit: BoxFit.cover)));
           },
         );
       }).toList(),

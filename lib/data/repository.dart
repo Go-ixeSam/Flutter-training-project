@@ -6,6 +6,7 @@ import 'package:online_croceries/data/network/favorite/favorite_api.dart';
 import 'package:online_croceries/data/network/login/login_api.dart';
 import 'package:online_croceries/data/network/shop/shop_api.dart';
 import 'package:online_croceries/data/network/testing/pos_api.dart';
+import 'package:online_croceries/data/network/vincom/vincom_api.dart';
 import 'package:online_croceries/data/sharedpref/shared_preference_helper.dart';
 import 'package:online_croceries/models/cart/cart.dart';
 import 'package:online_croceries/models/cart/cart_list.dart';
@@ -19,6 +20,7 @@ import 'package:online_croceries/models/category/category_list.dart';
 import 'package:online_croceries/models/product_real/food_category.dart';
 import 'package:online_croceries/models/product_real/food_category_list.dart';
 import 'package:online_croceries/models/testing/jsonplaceholder.dart';
+import 'package:online_croceries/models/vincom/vincom_all_product.dart';
 import 'package:sembast/sembast.dart';
 
 import 'local/constants/db_constants.dart';
@@ -37,6 +39,7 @@ class Repository {
   final FoodCategoryAPI _foodCategoryAPI;
   final CartApi _cartApi;
   final FavoriteAPI _favoriteAPI;
+  final VincomAPI _vincomAPI;
 
   // shared pref object
   final SharedPreferenceHelper _sharedPrefsHelper;
@@ -52,7 +55,9 @@ class Repository {
       this._foodCategoryAPI,
       this._cartApi,
       this._favoriteAPI,
-      this._posApi);
+      this._posApi,
+      this._vincomAPI
+      );
   // Repository(this._categoryApi, this._sharedPrefsHelper, this._categoryDataSource);
 
   // Category: ---------------------------------------------------------------------
@@ -168,6 +173,11 @@ class Repository {
   //testing
   Future<Pos> getPos() async {
     return await _posApi.getPosList().then((value) => value).catchError((onError)=>throw onError);
+  }
+
+  //vincom
+  Future<Vincom> getVincom() async {
+    return await _vincomAPI.getVincom().then((value) => value).catchError((onError)=>throw onError);
   }
 
   Future<void> saveIsLoggedIn(bool value) =>

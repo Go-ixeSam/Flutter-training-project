@@ -6,3 +6,10 @@ getTransparentStatusBarWithBlackIcon() {
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark);
 }
+
+getTransparentStatusBarWithWhiteIcon() {
+  return SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light
+  );
+}

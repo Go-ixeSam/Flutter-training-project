@@ -50,3 +50,25 @@ AppBar TransparentAppBarWithBlackArrow(){
     backgroundColor: Colors.transparent,
   );
 }
+
+
+AppBar TransparentAppBarCustom(Color color,List<Widget> iconButons){
+  return AppBar(
+    centerTitle: true,
+    leading: Builder(builder: (context) {
+      return IconButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        icon: Icon(
+          Icons.chevron_left,
+          color: color,
+        ),
+      );
+    }),
+    actions: iconButons,
+    elevation: 0.0,
+    systemOverlayStyle: SystemUiOverlayStyle.dark,
+    backgroundColor: Colors.transparent,
+  );
+}

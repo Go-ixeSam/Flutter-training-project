@@ -13,6 +13,7 @@ import 'package:online_croceries/stores/shop/shop_store.dart';
 import 'package:online_croceries/stores/food_category/food_category_store.dart';
 import 'package:online_croceries/stores/testing/pos_store.dart';
 import 'package:online_croceries/stores/user/user_store.dart';
+import 'package:online_croceries/stores/vincom/vincom_store.dart';
 import 'package:online_croceries/ui/beverages/beverages_screen.dart';
 import 'package:online_croceries/ui/cart/cart_screen.dart';
 import 'package:online_croceries/ui/favorite/favorite_screen.dart';
@@ -25,12 +26,14 @@ import 'package:online_croceries/ui/signin/sign_screen.dart';
 import 'package:online_croceries/ui/splash/splash_screen.dart';
 import 'package:online_croceries/ui/test.dart';
 import 'package:online_croceries/ui/user/user_account.dart';
+import 'package:online_croceries/ui/vinhome/detail/vi_detail.dart';
 import 'package:online_croceries/ui/vinhome/vi_home.dart';
 import 'package:online_croceries/ui/vinhome/vi_login.dart';
 import 'package:online_croceries/ui/vinhome/vi_sign_in.dart';
 import 'package:online_croceries/ui/vinhome/vi_splash_screen.dart';
 import 'package:online_croceries/ui/vinhome/vi_verify.dart';
 import 'package:online_croceries/ui/vinhome/vi_welcome.dart';
+import 'package:online_croceries/ui/web_view/tinh_te.dart';
 import 'package:online_croceries/utils/locale/app_localization.dart';
 import 'package:online_croceries/utils/routes/routes.dart';
 import 'package:online_croceries/widgets/bottom_navigation.dart';
@@ -61,9 +64,11 @@ class MyApp extends StatelessWidget {
   final LanguageStore _languageStore = LanguageStore(getIt<Repository>());
   final UserStore _userStore = UserStore(getIt<Repository>());
   final ShopStore _shopStore = ShopStore(getIt<Repository>());
-  final FoodCategoryStore _foodCategoryStore = FoodCategoryStore(getIt<Repository>());
+  final FoodCategoryStore _foodCategoryStore =
+      FoodCategoryStore(getIt<Repository>());
   final CartStore _cartStore = CartStore(getIt<Repository>());
   final PosStore _posStore = PosStore(getIt<Repository>());
+  final VincomStore _vincomStore = VincomStore(getIt<Repository>());
 
   final FavoriteStore _favoriteStore = FavoriteStore(getIt<Repository>());
 
@@ -79,7 +84,8 @@ class MyApp extends StatelessWidget {
         Provider<FoodCategoryStore>(create: (_) => _foodCategoryStore),
         Provider<CartStore>(create: (_) => _cartStore),
         Provider<FavoriteStore>(create: (_) => _favoriteStore),
-        Provider<PosStore>(create: (_) => _posStore)
+        Provider<PosStore>(create: (_) => _posStore),
+        Provider<VincomStore>(create: (_) => _vincomStore)
       ],
       child: Observer(
         builder: (context) {
@@ -96,8 +102,10 @@ class MyApp extends StatelessWidget {
               // home: SplashScreenVi(),
               // home: WelcomeVi(),
               // home: ViLogin(),
+              // home: ViPlaceDetail(),
+              home: TinhTe(),
               // home: ViSignIn(),
-              home: ViHome(),
+              // home: ViHome(),
               // home: ViVerify(),
               // home: CartScreen(),
               // home: Favorite(),

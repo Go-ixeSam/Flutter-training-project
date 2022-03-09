@@ -27,4 +27,5 @@ class Endpoints {
   static const String getFavorite = baseUrl + "/favorite";
   static const String addCartFromFavorite = baseUrl + "/carts";
   static const String getTesting = "https://jsonplaceholder.typicode.com/posts";
+  static const String getVincom = "http://10.0.2.2:3000/vinhome";
 }

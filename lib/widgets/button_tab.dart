@@ -10,7 +10,7 @@ class ButtonTab extends StatelessWidget {
     return Container(
       width: 64,
       height: 56,
-      color: Color(VinColor.red).withOpacity(0.5),
+      color: Color(VinColor.red).withOpacity(0.1),
       child: Center(
         child: icon,
       ),

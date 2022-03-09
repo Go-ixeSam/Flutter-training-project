@@ -100,4 +100,14 @@ class Assets {
   static const String girl3 = "assets/images/girl3.jpg";
   static const String news = "assets/images/tin_tuc.svg";
   static const String homeCard = "assets/images/flutter_card.png";
+  static const String success_vi = "assets/images/Ribbons.png";
+  static const String lai_thuyen = "assets/images/lai_thuyen.png";
+  static const String xich_lo = "assets/images/xich_lo.png";
+  static const String trong_lua = "assets/images/trong_lua.png";
+  static const String not_search_found = "assets/images/not_search_found.png";
+  static const String first = "assets/images/first.png";
+  static const String second = "assets/images/second.png";
+  static const String lau = "assets/images/lau.png";
+  static const String xiomi = "assets/images/xiaomi.png";
+  static const String home = "assets/images/home.png";
 }
